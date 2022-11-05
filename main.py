@@ -19,16 +19,25 @@ def hangman():
     lives = 5   # you have 5 attempts for make mistake
 
     while len(letters_of_word) > 0 and lives > 0:
-        print("You have {}".format(lives), " lives and you have used these letters: ", ' '.join(used_letters))
+        print("You have {}".format(lives), "lives and you have used these letters: ", ' '.join(used_letters))
         current_word = [letter if letter in used_letters else '_' for letter in word_for_game]
-        print(f"Current word:{current_word}")
+        print("Current word:", ' '.join(current_word))
 
         guess = input("Please, choose a letter: ").upper()   # user is choosing a letter. It is uppercase, because we
         if guess in (alphabet - used_letters):               # work with this font
             used_letters.add(guess)
             if guess in letters_of_word:
                 letters_of_word.remove(guess)   # removing correct letter from list of target word
+            else:
+                lives = lives - 1
         elif guess in used_letters:
-            print("\n You have already used this letter. Please, choose another \n")
+            print("\n !!!You have already used this letter. Please, choose another!!! \n")
         else:
             print("There is no such kind of symbol in this list")
+    if lives == 0:
+        print("\nYou loose :(\nThe right word is {}".format(word_for_game))
+    else:
+        print("\nYou win ;)\nThe right word is {}".format(word_for_game))
+
+
+hangman()
