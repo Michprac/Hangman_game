@@ -1,0 +1,1 @@
+words = ['sun', 'ice-cream', 'green apple', 'machine', 'house', 'garden']
