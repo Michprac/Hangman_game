@@ -23,8 +23,12 @@ def hangman():
         current_word = [letter if letter in used_letters else '_' for letter in word_for_game]
         print(f"Current word:{current_word}")
 
-        guess = input("Please, choose a letter: ") #user is choosing a letter
-        if guess in (alphabet - used_letters):
+        guess = input("Please, choose a letter: ").upper()   # user is choosing a letter. It is uppercase, because we
+        if guess in (alphabet - used_letters):               # work with this font
             used_letters.add(guess)
             if guess in letters_of_word:
-                
+                letters_of_word.remove(guess)   # removing correct letter from list of target word
+        elif guess in used_letters:
+            print("\n You have already used this letter. Please, choose another \n")
+        else:
+            print("There is no such kind of symbol in this list")
